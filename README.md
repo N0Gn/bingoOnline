@@ -1,10 +1,11 @@
 🎯 Bingo Online
 
-https://youtu.be/C3yUGw4AgMk -> demonstração gravada do funcionamento
+📺 Demonstração:
+https://youtu.be/C3yUGw4AgMk
 
 Sistema de Bingo Online desenvolvido em arquitetura Full Stack, utilizando Node.js, React, Prisma, PostgreSQL e Docker.
 
-O projeto é totalmente containerizado e pode ser executado com um único comando, garantindo padronização do ambiente de desenvolvimento.
+O projeto é totalmente containerizado e pode ser executado com um único comando, garantindo padronização, portabilidade e facilidade de configuração do ambiente de desenvolvimento.
 
 📌 Tecnologias Utilizadas
 Backend
@@ -37,15 +38,19 @@ PostgreSQL (container oficial)
 
 ⚙️ Pré-requisitos
 
-Antes de iniciar, é necessário ter instalado:
+Antes de iniciar, certifique-se de ter instalado:
 
 Docker
 
+Docker Desktop (Windows / macOS)
+
 Docker Compose
+
+⚠️ No Windows, é necessário que o Docker Desktop esteja em execução antes de rodar qualquer comando.
 
 🔐 Configuração das Variáveis de Ambiente
 
-O projeto utiliza arquivos .env para configuração.
+O projeto utiliza arquivos .env para configuração dos serviços.
 
 📁 Arquivo .env (raiz)
 POSTGRES_DB=bingo
@@ -72,19 +77,44 @@ FRONTEND_PORT=5173
 
 ⚠️ Os arquivos .env não devem ser versionados em repositórios públicos.
 
-▶️ Como Executar o Projeto com Docker
-Subir a aplicação
+🐳 Execução com Docker
+
+O projeto é totalmente containerizado utilizando Docker e Docker Compose, permitindo que todo o ambiente seja iniciado com um único comando.
+
+▶️ Como Executar o Projeto
+1️⃣ Clonar o repositório
+git clone https://github.com/N0Gn/bingoOnline.git
+cd bingoOnline
+
+2️⃣ Configurar variáveis de ambiente
+
+Crie os arquivos .env conforme descrito na seção anterior.
+
+3️⃣ Subir os containers
 
 Na raiz do projeto, execute:
+
+docker compose up --build
+
+
+Ou, para versões antigas:
 
 docker-compose up --build
 
 
-Ou:
+Esse comando irá:
 
-docker compose up --build
+Construir as imagens
 
-Acessos
+Instalar dependências
+
+Inicializar o banco de dados
+
+Configurar o Prisma
+
+Subir backend e frontend
+
+4️⃣ Acessar o sistema
 
 Após a inicialização:
 
@@ -94,26 +124,23 @@ Frontend	http://localhost:5173
 Backend	http://localhost:3000
 
 API	http://localhost:3000/api
+🔄 Estrutura dos Containers
 
-(As portas dependem das configurações do .env.)
-
-🔄 Funcionamento do Docker Compose
-
-O projeto é composto por três serviços principais:
+O Docker Compose gerencia três serviços principais:
 
 🐘 Banco de Dados (db)
 
 PostgreSQL 16
 
-Persistência via volume db_data
+Volume persistente: db_data
 
-Porta: 5432
+Responsável pelo armazenamento dos dados
 
 ⚙️ Backend (backend)
 
 Node.js + Prisma
 
-Executa automaticamente:
+Inicializa automaticamente:
 
 prisma generate
 
@@ -121,17 +148,19 @@ prisma db push
 
 npm run dev
 
-Hot reload habilitado via volumes
+Comunicação direta com o banco
+
+Hot reload habilitado
 
 🌐 Frontend (frontend)
 
 React + Vite
 
-Executado em modo desenvolvimento
+Servidor em modo desenvolvimento
+
+Integração com o backend
 
 Hot reload ativo
-
-Porta configurável via .env
 
 📦 Gerenciamento de Dependências
 
@@ -139,9 +168,9 @@ O projeto utiliza npm para gerenciamento de dependências.
 
 package.json: define as bibliotecas utilizadas.
 
-package-lock.json: garante versões exatas das dependências.
+package-lock.json: garante versões exatas.
 
-No Docker é utilizado:
+No ambiente Docker é utilizado:
 
 npm ci
 
@@ -161,11 +190,9 @@ Facilitar a execução
 
 Garantir reprodutibilidade
 
-Todo o sistema pode ser iniciado com um único comando.
-
 2️⃣ Prisma como ORM
 
-O Prisma foi escolhido por:
+Escolhido por:
 
 Controle de schema
 
@@ -175,11 +202,9 @@ Tipagem
 
 Integração com PostgreSQL
 
-O banco é sincronizado automaticamente ao iniciar o backend.
-
 3️⃣ Separação Frontend / Backend
 
-A separação facilita:
+Facilita:
 
 Manutenção
 
@@ -197,11 +222,9 @@ JWT para sessões
 
 Bcrypt para criptografia de senhas
 
-Garantindo segurança básica para usuários.
-
 5️⃣ Vite no Frontend
 
-O Vite foi utilizado por:
+Utilizado por:
 
 Build rápido
 
@@ -210,16 +233,3 @@ Hot reload eficiente
 Configuração simples
 
 Integração com Docker
-
-🧪 Comandos Úteis
-Parar containers
-docker-compose down
-
-Visualizar logs
-docker-compose logs -f
-
-Rebuild completo
-docker-compose up --build --force-recreate
-
-Resetar banco de dados
-docker-compose down -v
