@@ -33,28 +33,6 @@ Docker Compose
 
 PostgreSQL (container oficial)
 
-🗂 Estrutura do Projeto
-.
-├── backend/
-│   ├── prisma/
-│   ├── src/
-│   ├── .env
-│   ├── Dockerfile
-│   └── package.json
-│
-├── frontend/
-│   ├── src/
-│   ├── .env
-│   ├── Dockerfile
-│   ├── vite.config.js
-│   └── package.json
-│
-├── docker-compose.yml
-├── .env
-├── package.json
-├── package-lock.json
-└── README.md
-
 ⚙️ Pré-requisitos
 
 Antes de iniciar, é necessário ter instalado:
