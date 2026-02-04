@@ -1,5 +1,7 @@
 🎯 Bingo Online
 
+https://youtu.be/C3yUGw4AgMk -> demonstração gravada do funcionamento
+
 Sistema de Bingo Online desenvolvido em arquitetura Full Stack, utilizando Node.js, React, Prisma, PostgreSQL e Docker.
 
 O projeto é totalmente containerizado e pode ser executado com um único comando, garantindo padronização do ambiente de desenvolvimento.
